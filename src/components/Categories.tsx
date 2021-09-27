@@ -1,25 +1,25 @@
-import React, {FC, useState} from 'react';
+import React, {FC} from 'react';
 
 type CategoriesPropsType = {
-    items: string[]
-    onClick: () => void
+    items: Array<{ id: number, value: string }>
+    activeItem: number
+    setActiveItem: (id: number) => void
 }
 
-const Categories: FC<CategoriesPropsType> = ({items, onClick}) => {
+const Categories: FC<CategoriesPropsType> = ({items, activeItem, setActiveItem}) => {
 
-    const [activeItem, setActiveItem] = useState(0);
 
-    const onSelectItem = (index: number) => {
-        setActiveItem(index)
+    const onSelectItem = (id: number) => {
+        setActiveItem(id)
     }
     return (
         <div className="categories">
             <ul>
-                <li>Все</li>
-                {items.map((name: string, index) =>
-                    <li className={activeItem === index ? "active" : ''}
-                        onClick={() => onSelectItem(index)}
-                        key={index}>{name}</li>
+                {items && items.map(item =>
+                    <li key={item.id}
+                        className={item.id === activeItem ? "active" : ""}
+                        onClick={() => onSelectItem(item.id)}
+                    >{item.value}</li>
                 )}
             </ul>
         </div>
