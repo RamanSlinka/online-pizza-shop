@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useRef, useState} from 'react';
 
 type SortPopupPropsType = {
-    itemsSort: Array<string>
+    itemsSort: Array<{ name: string, type: string }>
 }
 
 const SortPopup: FC<SortPopupPropsType> = ({itemsSort}) => {
@@ -19,7 +19,7 @@ const SortPopup: FC<SortPopupPropsType> = ({itemsSort}) => {
         setActiveItem(index);
         setVisiblePopup(false);
     }
-    const activeLabel = itemsSort[activeItem]
+    const activeLabel = itemsSort[activeItem].name;
 
     const handleOutsideClick = (e: any) => {
         if (!e.path.includes(sortRef.current)) {
@@ -58,7 +58,7 @@ const SortPopup: FC<SortPopupPropsType> = ({itemsSort}) => {
                             className={activeItem === index  ? "active" : ""}
                             key={index}
                             onClick={() => onSelectItem(index)}
-                        >{item}</li>   )}
+                        >{item.name}</li>   )}
 
                 </ul>
             </div>

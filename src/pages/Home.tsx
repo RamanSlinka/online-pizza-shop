@@ -43,7 +43,11 @@ const Home: FC <HomePropsType> = ({items}) => {
                     />
 
                     <SortPopup
-                        itemsSort = {['популярности', 'цене', 'алфавиту']}
+                        itemsSort = {[
+                            {name:'популярности', type: 'popular'},
+                            {name: 'цене', type: 'price'},
+                            {name: 'алфавиту', type: 'alphabet'}
+                        ]}
                     />
 
 
